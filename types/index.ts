@@ -18,6 +18,9 @@ export interface IBlog {
   slug: string;
 }
 
+export interface PageProps {
+  params: { id: string };
+}
 export interface IAuthor {
   name: string;
   image: {url: string};

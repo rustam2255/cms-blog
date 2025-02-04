@@ -1,12 +1,10 @@
 import BlogCard from "@/components/cards/blog"
 import { getDetailedAuthor } from "@/service/author.service"
+import { PageProps } from "@/types";
 import Image from "next/image"
-
-async function Page({ params }: { params: { id: string } }) {
-
-  const { id } =  params;  // await params
-  const author = await getDetailedAuthor(id); 
-  
+async function Page({ params }: PageProps) {
+  const { id } = params;
+  const author = await getDetailedAuthor(id);
   return (
     <div className="max-w-6xl mx-auto pt-36">
       <div className="flex mt-6 gap-6 items-center max-md:flex-col">
