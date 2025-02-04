@@ -41,7 +41,7 @@ async function ArchivePage() {
 			</div>
 			{blogs.map(blog => (
 				<>
-					<div className='flex flex-col space-y-3 mt-8' key={blog.year}>
+					<div className='flex flex-col space-y-3 mt-8'>
 						<div className='relative'>
 							<span className='text-5xl font-creteRound relative z-20'>
 								{blog.year}
@@ -53,7 +53,7 @@ async function ArchivePage() {
 						{blog.blogs.map(item => (
 							<div
 								className='flex gap-2 text-lg text-muted-foreground'
-								key={item.title}
+								key={item.slug}
 							>
 								<p>{format(new Date(item.createdAt), 'dd MMM')}</p>
 								<Dot className='text-white w-8 h-8' />
