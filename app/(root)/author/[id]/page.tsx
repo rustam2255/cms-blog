@@ -4,7 +4,7 @@ import Image from "next/image"
 
 async function Page({ params }: { params: { id: string } }) {
 
-  const { id } = await params;  // await params
+  const { id } =  params;  // await params
   const author = await getDetailedAuthor(id); 
   
   return (
