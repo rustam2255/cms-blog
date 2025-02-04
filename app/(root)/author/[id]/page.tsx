@@ -1,10 +1,10 @@
 import BlogCard from "@/components/cards/blog"
-import { getDetailedAuthor } from "@/service/author.service"
+import { getDetaileddAuthor } from "@/service/author.service"
 import Image from "next/image"
 
 async function Page({ params }: { params: { id: string } }) {
   // `await` ni qo'shish kerak
-  const author = await getDetailedAuthor(params.id)
+  const author = await getDetaileddAuthor(params.id)
   
   return (
     <div className="max-w-6xl mx-auto pt-36">

@@ -24,49 +24,48 @@ export const getAuthors = async () => {
     return authors
 }
 
-export const getDetailedAuthor = async (id: string) => {
-  const query = gql`
-   query MyQuery($id: ID) {
-  author(where: {id: $id}) {
-    bio
-    image {
-      url
-    }
-    name
-    blog {
-    
-        author {
-      name
-      bio
-      image {
-        url
-      }
-    }
-    content {
-      html  
-    }
-    createdAt
-    image {
-      url
-    }
-    slug
-    title
-    tag {
-      name
-      slug
-    }
-    category{
-      name
-      slug
-    }
-    }
-    name
-    
-  
-  }
-}
-  `
+export const getDetaileddAuthor = async (id: string) => {
+	const query = gql`
+		query MyQuery($id: ID) {
+			author(where: { id: $id }) {
+				bio
+				image {
+					url
+				}
+				name
+				blogs {
+					description
+					author {
+						name
+						image {
+							url
+						}
+						bio
+					}
+					content {
+						html
+					}
+					createdAt
+					image {
+						url
+					}
+					slug
+					tag {
+						name
+						slug
+					}
+					category {
+						name
+						slug
+					}
+					title
+				}
+			}
+		}
+	`
 
-  const { author } = await request<{ author: IAuthor }>(graphqlAPI, query, { id })
-    return author
+	const { author } = await request<{
+		author: IAuthor
+	}>(graphqlAPI, query, { id })
+	return author
 }
