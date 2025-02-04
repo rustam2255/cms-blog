@@ -9,7 +9,8 @@ export async function generateMetadata({
 }: {
 	params: { slug: string }
 }) {
-	const blog = await getBlogsByCategory(params.slug)
+	const { slug } = await params; // params ni await qilish
+  const blog = await getBlogsByCategory(slug); 
 
 	return {
 		title: blog.name,
@@ -19,7 +20,8 @@ export async function generateMetadata({
 
 
 async  function Page({params}: {params: {slug: string}}) {
-  const category = await getBlogsByCategory(params.slug)
+  const { slug } = await params; // params ni await qilish
+  const category = await getBlogsByCategory(slug); 
  
   
   return (

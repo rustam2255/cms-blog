@@ -4,7 +4,8 @@ import Image from "next/image"
 
 async function Page({ params }: { params: { id: string } }) {
 
-  const author = await getDetailedAuthor(params.id)
+  const { id } = await params;  // await params
+  const author = await getDetailedAuthor(id); 
   
   return (
     <div className="max-w-6xl mx-auto pt-36">
