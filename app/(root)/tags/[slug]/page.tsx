@@ -4,14 +4,10 @@ import { Dot, Home } from "lucide-react";
 import Link from "next/link";
 
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { slug: string }
-}) {
-	const { slug } = await params; // params ni await qilish
-  const blog = await getBlogsByTag(slug); 
 
+export async function generateMetadata(props: {params: Promise<{ slug: string }>}) {
+  const params = await props.params;
+  const blog = await getBlogsByTag(params.slug)
 	return {
 		title: blog.name,
 	}
@@ -19,9 +15,9 @@ export async function generateMetadata({
 
 
 
-async  function Page({params}: {params: {slug: string}}) {
-  const { slug } = await params; // params ni await qilish
-  const tag = await getBlogsByTag(slug); 
+async  function Page(props: {params: Promise<{slug: string}>}) {
+  const params = await props.params; // params ni await qilish
+  const tag = await getBlogsByTag(params.slug); 
  
   
   return (
