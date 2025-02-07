@@ -36,11 +36,10 @@ export async function generateMetadata({
 }
 
 
-async function SlugPage(props: { params: Promise<{ slug: string }> }) {
-    const params = await props.params;
 
-    const { slug } =  params;  // params ni await qilish
-    const blog = await getDetailedBlog(slug);
+async function SlugPage(props: { params: Promise<{ id: string }> }) {
+		const params = await props.params;
+		const blog = await getDetailedBlog(params.id)
 
     return (
 		<div className='pt-[15vh] max-w-5xl mx-auto'>
