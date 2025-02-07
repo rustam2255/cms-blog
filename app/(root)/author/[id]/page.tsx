@@ -6,8 +6,12 @@ import Image from 'next/image'
 
 async  function Page({ params }: { params: { id: string } }) {
 
-	const { id } =  await params;  // params ni await qilish
-	const author = await getDetailedAuthor(id); 
+	
+	
+	const resolvedParams = await params;  // Bu yerdagi params ni kutyapmiz
+  const { id } = resolvedParams;
+	const author = await getDetailedAuthor(id);
+
 
 
 
