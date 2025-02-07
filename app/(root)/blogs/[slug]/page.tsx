@@ -36,12 +36,13 @@ export async function generateMetadata({
 }
 
 
-async  function SlugPage({ params }: { params: { slug: string } }) {
+async function SlugPage(props: { params: Promise<{ slug: string }> }) {
+    const params = await props.params;
 
-	const { slug } =  params;  // params ni await qilish
-  const blog = await getDetailedBlog(slug); 
-	
-	return (
+    const { slug } =  params;  // params ni await qilish
+    const blog = await getDetailedBlog(slug);
+
+    return (
 		<div className='pt-[15vh] max-w-5xl mx-auto'>
 			<h1 className='lg:text-6xl md:text-5xl text-4xl font-creteRound'>
 				{blog.title}

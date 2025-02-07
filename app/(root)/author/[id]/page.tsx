@@ -4,19 +4,14 @@ import Image from 'next/image'
 
 
 
-async  function Page({ params }: { params: { id: string } }) {
-
-	
-	
-	const resolvedParams = await params;  // Bu yerdagi params ni kutyapmiz
-  const { id } = resolvedParams;
-	const author = await getDetailedAuthor(id);
+async function Page(props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
+    const author = await getDetailedAuthor(params.id)
 
 
 
 
-
-	return (
+    return (
 		<div className='max-w-6xl mx-auto pt-36'>
 			<div className='flex mt-6 gap-6 items-center max-md:flex-col'>
 				<Image
