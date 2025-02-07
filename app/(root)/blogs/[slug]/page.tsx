@@ -18,13 +18,9 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { slug: string }
-}) {
-	const { slug } = await params;  // params ni await qilish
-  const blog = await getDetailedBlog(slug);
+export async function generateMetadata(props: {params: Promise<{ slug: string }>}) {
+	const params = await props.params;
+	const blog = await getDetailedBlog(params.slug)
 
 	return {
 		title: blog.title,
@@ -37,9 +33,9 @@ export async function generateMetadata({
 
 
 
-async function SlugPage(props: { params: Promise<{ id: string }> }) {
+async function SlugPage(props: { params: Promise<{ slug: string }> }) {
 		const params = await props.params;
-		const blog = await getDetailedBlog(params.id)
+		const blog = await getDetailedBlog(params.slug)
 
     return (
 		<div className='pt-[15vh] max-w-5xl mx-auto'>
